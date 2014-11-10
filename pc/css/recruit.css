@@ -122,32 +122,26 @@ img {border: 0;}
 }
 .process-nav{
     position: absolute;
-    bottom: -3px;
+    bottom: -1px;
     left: 20px;
 }
 .process-nav-item {
     position: relative;
     width: 110px;
-    /*height: 28px;*/
     height: 35px;
     margin-right: 15px;
-    /*background-color: #fff;*/
     color: #000;
     display: inline-block;
-}
-.process-nav-item span{
-    position: absolute;
-    left: 0;
-    top: 0px;
-    color: #000;
-    display: inline-block;
-    width: 110px;
-    height: 35px;
     background:url(../images/nav-item.png) no-repeat 0 0;
-    line-height: 34px;
     text-align: center;
-    /*margin-top: -10px;*/
-    
+    vertical-align: middle;
+}
+.process-nav-item span {
+    line-height: 35px;
+}
+.process-nav-item span,.process-nav-item i{
+    display: inline-block;
+    vertical-align: middle;
 }
 .process-nav-item:hover span {
     color: red;
