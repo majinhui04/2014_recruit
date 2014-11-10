@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head lang="zh-CN">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+
+    <meta name="format-detection" content="telephone=no" />
+
+    <title>校招</title>
+    <link rel="stylesheet" href="css/recruit.css">
+    <script src="./js/jquery.js"></script>
+   
+</head>
+<body>
+    <div class="recruit-header w1001">
+        <a href="./index.html" class="recruit-logo">
+            <img src="./images/logo.png" alt="">
+        </a>
+        <div class="recruit-logo-others">
+            <img src="./images/logo-others.jpg" alt="">
+        </div>
+        
+    </div>
+    <div class="recruit-link-container w1001">
+        <div class="recruit-bg">
+            <img src="./images/recruit-bg.jpg" alt="">
+        </div>
+        <div class="slogan1" id="slogan1">
+            <img src="./images/slogan1.png" alt="">
+        </div>
+        <div class="slogan2" id="slogan2">
+            <img src="./images/slogan2.png" alt="">
+        </div>
+        <a href="javascript:;" class="recruit-link recruit-link-apply" title="职位申请">
+            <img src="./images/process-apply.png" alt="">
+        </a>
+        <a href="javascript:;" class="recruit-link recruit-link-intro" title="流程介绍">
+            <img src="./images/process-intro.png" alt="">
+        </a>
+        <a href="javascript:;" class="recruit-link recruit-link-qa" title="校招Q&A">
+            <img src="./images/process-qa.png" alt="">
+        </a>
+        <a href="javascript:;" class="recruit-link recruit-link-speak" title="宣讲会安排">
+            <img src="./images/process-speak.png" alt="">
+        </a>
+        <a href="javascript:;" class="recruit-link recruit-link-company" title="公司介绍">
+            <img src="./images/process-company.png" alt="">
+        </a>
+        
+    </div>
+    <script>
+    $(function(){
+        var delay = function(callback,timeout){
+            var  timeout = timeout || 800;
+            setTimeout(function(){
+                callback();
+            },timeout);
+        }
+        var $slogan1 = $('#slogan1'), $slogan2 = $('#slogan2');
+
+        var slogan1Top = parseInt($slogan1.css('top'));
+        var slogan2Top = parseInt($slogan2.css('top'));
+        var slogan1Animate = function(){
+            $slogan1.animate({
+                top:slogan1Top-10+'px',
+                opacity:1
+            },800);
+        };
+        var slogan2Animate = function(){
+            $slogan2.animate({
+                top:slogan2Top-10+'px',
+                opacity:1
+            },800);
+        };
+        var linkAnimate = function(){
+            $('.recruit-link').each(function(){
+                var $this = $(this), offset = parseInt($this.css('left'));
+
+                if($this.hasClass('recruit-link-speak') || $this.hasClass('recruit-link-company')) {
+                    offset = parseInt($this.css('right'));
+                    $this.attr('data-offset',offset);
+                    $this.css('right','-500px');
+                }else {
+                    offset = parseInt($this.css('left'));
+                    $this.attr('data-offset',offset);
+                    $this.css('left','-500px');
+                }
+            });
+
+            delay(function(){
+                $('.recruit-link').each(function(){
+                    var $this = $(this), offset ;
+
+                    if($this.hasClass('recruit-link-speak') || $this.hasClass('recruit-link-company')) {
+                        offset = parseInt($this.attr('data-offset'));
+                        $this.animate({
+                            opacity:0.6,
+                            right:offset
+                        },500);
+                    }else {
+                        offset = parseInt($this.attr('data-offset'));
+                        $this.animate({
+                            opacity:0.6,
+                            left:offset
+                        },500);
+                    }
+                });
+
+            },200);
+        };
+        //alert(slogan1Top)
+        delay(slogan1Animate,1000);
+        delay(slogan2Animate,1400); 
+        linkAnimate();  
+
+        $('.recruit-link').bind('mouseenter',function(){
+            $(this).animate({opacity:1});
+        }).bind('mouseleave',function(){
+            $(this).animate({opacity:0.6});
+        });
+
+        
+    });
+    </script>
+</body>
+</html>
